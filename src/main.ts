@@ -6,7 +6,9 @@ import "@/style/reset.scss"
 import App from '@/App.vue'
 // 引入全局组件--顶部、底部都是全局组件
 import HospitalTop from "@/components/hospital_top/index.vue"
+import HospitalBottom from "@/components/hospital_bottom/index.vue"
 // 利用createAPP方法创建应用实例，且将应用实例挂载到挂载点上
 const app = createApp(App)
 app.component("HospitalTop",HospitalTop)
+app.component("HospitalBottom",HospitalBottom)
 app.mount('#app')

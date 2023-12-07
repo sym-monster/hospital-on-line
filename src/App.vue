@@ -1,13 +1,30 @@
 <template>
-    <div class="container">
-      <!-- 顶部全局组件 -->
-      <HospitalTop/>
+  <div class="container">
+    <!-- 顶部全局组件 -->
+    <HospitalTop />
+    <!-- 展示路由组件的区域 -->
+    <div class="content">
+       内容
     </div>
-  </template>
+    <!-- 底部全局组件 -->
+    <HospitalBottom />
+  </div>
+</template>
   
-  <script setup lang="'ts'">
+<script setup lang="'ts'">
+
+</script>
   
-  </script>
-  
-  <style scoped>
-  </style>
+<style scoped lang="scss">
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .content{
+      margin-top: 70px;
+      width: 1200px;
+      min-height: 700px;
+      background-color: pink;
+    }
+  }
+</style>
