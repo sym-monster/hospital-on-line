@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <h1>尚医通</h1>
-  </div>
-</template>
-
-<script setup lang="'ts'">
-
-</script>
-
-<style scoped>
-</style>
+    <div class="container">
+      <!-- 顶部全局组件 -->
+      <HospitalTop/>
+    </div>
+  </template>
+  
+  <script setup lang="'ts'">
+  
+  </script>
+  
+  <style scoped>
+  </style>
