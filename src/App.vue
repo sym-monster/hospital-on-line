@@ -4,7 +4,8 @@
     <HospitalTop />
     <!-- 展示路由组件的区域 -->
     <div class="content">
-       内容
+       <!-- 展示路由组件： -->
+       <router-view></router-view>
     </div>
     <!-- 底部全局组件 -->
     <HospitalBottom />
@@ -24,7 +25,6 @@
       margin-top: 70px;
       width: 1200px;
       min-height: 700px;
-      background-color: pink;
     }
   }
 </style>

@@ -25,6 +25,7 @@
         height: 50px;
         display: flex;
         justify-content: center;
+        background-color: #fafafa;
         .content{
             width: 1200px;
             height: 100%;

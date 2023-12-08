@@ -5,6 +5,11 @@
                 <img src="../../assets/images/logo.png" alt="">
                 <p>尚医通 预约挂号统一平台</p>
             </div>
+            <div class="search">
+                <div class="content">
+
+                </div>
+            </div>
             <div class="right">
                 <p class="help">帮助中心</p>
                 <p class="login">登录/注册</p>
@@ -25,16 +30,18 @@
         background-color: #fff;
         display:flex;
         justify-content: center;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
         .content{
             width: 1200px;
             height: 70px;
             background-color: #fff;
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             .left{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex: 2;
                 img{
                     width: 50px;
                     height: 50px;
@@ -45,7 +52,19 @@
                     color: #55a6fe;
                 }
             }
+            .search{
+                flex: 2;
+                display: flex;
+                justify-content: center;
+                background-color: blue;
+                .content{
+                    width: 283px;
+                    height: 61px;
+                    background-color: pink;
+                }
+            }
             .right{
+                flex: 1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
