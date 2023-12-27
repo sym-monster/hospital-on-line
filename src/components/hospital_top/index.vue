@@ -24,6 +24,7 @@
 
 <style scoped lang="scss">
     .top{
+        z-index: 999;
         position: fixed;
         width: 100%;
         height: 70px;
@@ -56,11 +57,9 @@
                 flex: 2;
                 display: flex;
                 justify-content: center;
-                background-color: blue;
                 .content{
                     width: 283px;
                     height: 61px;
-                    background-color: pink;
                 }
             }
             .right{
