@@ -44,6 +44,7 @@
             display: flex;
             li{
                 margin-right: 20px;
+                margin-bottom: 15px;
                 &.active{
                     color: #55a6fe;
                 }

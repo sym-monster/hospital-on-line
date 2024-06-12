@@ -16,7 +16,7 @@ request.interceptors.request.use((config)=>{
 // 响应拦截器
 request.interceptors.response.use((response)=>{
     // 响应拦截器成功的回调
-    return response;
+    return response.data;
 },(error)=>{
     // 处理http网络错误
     return Promise.reject(new Error(error.message))

@@ -12,6 +12,8 @@ import router from "@/router"
 // 引入element-plus插件
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+// 国际化文件
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 利用createAPP方法创建应用实例，且将应用实例挂载到挂载点上
 const app = createApp(App)
 app.component("HospitalTop",HospitalTop)
@@ -19,6 +21,8 @@ app.component("HospitalBottom",HospitalBottom)
 // 安装vue-router
 app.use(router);
 // 安装element-plus插件
-app.use(ElementPlus)
+app.use(ElementPlus,{
+    locale: zhCn,
+})
 
 app.mount('#app')

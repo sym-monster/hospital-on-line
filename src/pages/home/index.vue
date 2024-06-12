@@ -13,7 +13,15 @@
         <Region />
         <!-- 展示医院的结构 -->
         <div class="hospital">
-          <Card class='item' v-for="item in 10" :key="item" />
+          <Card class="item" v-for="item in 10" :key="item" />
+          <!-- 分页器 -->
+          <el-pagination
+            v-model:current-page="pageNo"
+            v-model:page-size="pageSize"
+            :page-sizes="[10, 20, 30, 40]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400"
+          />
         </div>
       </el-col>
       <el-col :span="4">456</el-col>
@@ -30,14 +38,21 @@ import Search from "./search/index.vue";
 import Level from "./level/index.vue";
 import Region from "./region/index.vue";
 import Card from "./card/index.vue";
+
+// 分页器需要的数组
+import {ref} from 'vue';
+// 分页器默认的页码
+let pageNo = ref<number>(1);
+// 一页展示几条数据
+let pageSize = ref<number>(10);
 </script>
 
 <style scoped lang="scss">
-.hospital{
+.hospital {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  .item{
+  .item {
     width: 49%;
     margin-top: 10px;
   }
