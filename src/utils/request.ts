@@ -5,7 +5,7 @@ import axios from 'axios';
 // 创建axios实例：可以设置基础路径、超超时的时间的设置
 const request = axios.create({
     baseURL:'/api/hosp', //请求的基础路径的设置
-    timeout:5000  //超时的时间的设置，超出5s请求失败
+    timeout:10000  //超时的时间的设置，超出5s请求失败
 });
 
 // 请求拦截器
