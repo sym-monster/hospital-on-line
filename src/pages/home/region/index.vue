@@ -1,60 +1,82 @@
 <template>
-    <div class="region">
-        <div class="content">
-            <div class="left">地区:</div>
-            <ul>
-                <li class="active">全部</li>
-                <li>东城区</li>
-                <li>西城区</li>
-                <li>朝阳区</li>
-                <li>丰台区</li>
-                <li>石景山区</li>
-                <li>海淀区</li>
-                <li>门头沟区</li>
-                <li>房山区</li>
-                <li>通州区</li>
-                <li>顺义区</li>
-                <li>昌平区</li>
-                <li>大兴区</li>
-                <li>怀柔区</li>
-                <li>平谷区</li>
-                <li>密云区</li>
-                <li>延庆区</li>
-            </ul>
-        </div>
+  <div class="region">
+    <div class="content">
+      <div class="left">地区:</div>
+      <ul>
+        <li :class="{ active: activeFlag == '' }" @click="changeRegion('')">
+          全部
+        </li>
+        <li
+          v-for="region in regionArr"
+          :key="region.value"
+          @click="changeRegion(region.value)"
+          :class="{ active: activeFlag == region.value }"
+        >
+          {{ region.name }}
+        </li>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { reqHospitalLevelAndRegion } from "@/api/home";
+import { onMounted, ref } from "vue";
+import {
+  HospitalLevelAndRegionResponseData,
+  HospitalLevelAndRegionArr,
+} from "@/api/home/type";
 
+onMounted(() => {
+  getRegion();
+});
+
+// 存储地区的数组
+let regionArr = ref<HospitalLevelAndRegionArr>([]);
+
+//获取地区的数据
+const getRegion = async () => {
+  let result: HospitalLevelAndRegionResponseData =
+    await reqHospitalLevelAndRegion("beijin");
+  console.log(result);
+  // 存储地区的数据
+  if ((result.code = 200)) {
+    regionArr.value = result.data;
+  }
+};
+// 地区高亮的响应式数据
+let activeFlag = ref<string>("");
+// 点击等级的按钮回调
+const changeRegion = (region: string) => {
+  activeFlag.value = region;
+};
 </script>
 
 <style scoped lang="scss">
-.region{
-    margin-top: 20px;
-    .content{
-        display: flex;
-        font-size: 14px;
-        color: #999;
-        .left{
-            width: 50px;
-        }
-        ul{
-            flex-wrap: wrap;
-            display: flex;
-            li{
-                margin-right: 20px;
-                margin-bottom: 15px;
-                &.active{
-                    color: #55a6fe;
-                }
-            }
-            li:hover{
-                color: #55a6fe;
-                cursor: pointer;
-            }
-        }
+.region {
+  margin-top: 20px;
+  .content {
+    display: flex;
+    font-size: 14px;
+    color: #999;
+    .left {
+      width: 50px;
     }
+    ul {
+      flex-wrap: wrap;
+      display: flex;
+      li {
+        margin-right: 20px;
+        margin-bottom: 15px;
+        &.active {
+          color: #55a6fe;
+        }
+      }
+      li:hover {
+        color: #55a6fe;
+        cursor: pointer;
+      }
+    }
+  }
 }
-
 </style>

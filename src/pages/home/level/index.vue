@@ -4,34 +4,57 @@
     <div class="content">
       <div class="left">等级:</div>
       <ul>
-        <li class="active">全部</li>
-        <li v-for="level in levelArr" :key="level.value">{{ level.name }}</li>
+        <li :class="{ active: activeFlag == '' }" @click="changeLevel('')">
+          全部
+        </li>
+        <li
+          v-for="level in levelArr"
+          :key="level.value"
+          :class="{ active: activeFlag == level.value }"
+          @click="changeLevel(level.value)"
+        >
+          {{ level.name }}
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reqHospitalLevelAndRegion } from '@/api/home';
-import { onMounted,ref } from 'vue';
-import type { HospitalLevelAndRegionArr, HospitalLevelAndRegionResponseData } from '@/api/home/type';
+import { reqHospitalLevelAndRegion } from "@/api/home";
+import { onMounted, ref } from "vue";
+import type {
+  HospitalLevelAndRegionArr,
+  HospitalLevelAndRegionResponseData,
+} from "@/api/home/type";
+
+// 控制医院等级高亮的响应式数据
+let activeFlag = ref<string>("");
 // 组件挂载完毕
-onMounted(()=>{
+onMounted(() => {
   getLevel();
-})
+});
+
+// 点击等级的按钮回调
+const changeLevel = (level: string) => {
+  // 高亮的响应式数据
+  // console.log(level);
+  activeFlag.value = level;
+};
 
 // 定义一个数组存储医院等级数据
-let levelArr = ref<HospitalLevelAndRegionArr>([])
+let levelArr = ref<HospitalLevelAndRegionArr>([]);
 // 获取医院等级的数据
-const getLevel = async() =>{
-  let result:HospitalLevelAndRegionResponseData = await reqHospitalLevelAndRegion('HosType');
-  console.log(result)
+const getLevel = async () => {
+  let result: HospitalLevelAndRegionResponseData =
+    await reqHospitalLevelAndRegion("HosType");
+  // console.log(result);
   // 存储医院的等级的数据
-  if(result.code == 200){
+  if (result.code == 200) {
     levelArr.value = result.data;
   }
-}
-// 
+};
+//
 </script>
 
 <style scoped lang="scss">
@@ -51,16 +74,16 @@ h1 {
   ul {
     display: flex;
     li {
-        margin-right: 20px;
-        font-size: 14px;
-        color: #999;
-        &.active{
-            color: #55a6fe
-        }
-    }
-    li:hover{
+      margin-right: 20px;
+      font-size: 14px;
+      color: #999;
+      &.active {
         color: #55a6fe;
-        cursor: pointer   
+      }
+    }
+    li:hover {
+      color: #55a6fe;
+      cursor: pointer;
     }
   }
 }
