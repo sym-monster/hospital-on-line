@@ -16,7 +16,7 @@
 import request from '@/utils/request';
 import {onMounted} from 'vue';
 onMounted(()=>{
-  request.get('/hospital/1/10').then((res: any)=>{
+  request.get('/hosp/hospital/1/10').then((res: any)=>{
     // console.log("数据",res); 
   })
 })
