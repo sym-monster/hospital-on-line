@@ -49,7 +49,9 @@ let activeFlag = ref<string>("");
 // 点击等级的按钮回调
 const changeRegion = (region: string) => {
   activeFlag.value = region;
+  $emit('getRegion',region)
 };
+let $emit = defineEmits(['getRegion'])
 </script>
 
 <style scoped lang="scss">

@@ -40,7 +40,10 @@ const changeLevel = (level: string) => {
   // 高亮的响应式数据
   // console.log(level);
   activeFlag.value = level;
+  // 触发自定义事件：将医院等级参数传给父组件
+  $emit('getLevel', level);
 };
+let $emit = defineEmits(["getLevel"])
 
 // 定义一个数组存储医院等级数据
 let levelArr = ref<HospitalLevelAndRegionArr>([]);

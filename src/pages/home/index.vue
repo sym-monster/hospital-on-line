@@ -8,17 +8,19 @@
     <el-row :gutter="20">
       <el-col :span="20">
         <!-- 等级子组件 -->
-        <Level />
+        <Level @getLevel="getLevel"/>
         <!-- 地区 -->
-        <Region />
+        <Region @getRegion="getRegion"/>
         <!-- 展示医院的结构 -->
-        <div class="hospital">
+        <div class="hospital" v-if="hasHospitalArr.length>0">
           <Card
             class="item"
             v-for="(item, index) in hasHospitalArr"
             :key="index"
             :hospitalInfo="item"
           />
+        </div>
+          <el-empty v-else description="该地区无医院信息" />
           <!-- 分页器 -->
           <el-pagination
             v-model:current-page="pageNo"
@@ -29,7 +31,6 @@
             @current-change="currentChange"
             @size-change="sizeChange"
           />
-        </div>
       </el-col>
       <el-col :span="4">456</el-col>
     </el-row>
@@ -48,7 +49,7 @@ import Search from "./search/index.vue";
 import Level from "./level/index.vue";
 import Region from "./region/index.vue";
 import Card from "./card/index.vue";
-import type {Content,HospitalResponseData} from "@/api/home/type"
+import type { Content, HospitalResponseData } from "@/api/home/type";
 // 分页器默认的页码
 let pageNo = ref<number>(1);
 // 一页展示几条数据
@@ -57,6 +58,10 @@ let pageSize = ref<number>(10);
 let hasHospitalArr = ref<Content>([]);
 // 存储已有医院的总个数
 let total = ref<number>(0);
+// 存储医院等级的相应数据
+let hostype = ref<string>("");
+// 存储医院地区的相应数据
+let districtCode = ref<string>("");
 
 // 组件挂载完毕，发一次请求
 onMounted(() => {
@@ -65,7 +70,12 @@ onMounted(() => {
 // 获取已有的医院的数据
 const getHospitalInfo = async () => {
   // 获取医院的数据：默认获取第一页
-  let result: HospitalResponseData = await reqHospital(pageNo.value, pageSize.value);
+  let result: HospitalResponseData = await reqHospital(
+    pageNo.value,
+    pageSize.value,
+    hostype.value,
+    districtCode.value
+  );
   if (result.code == 200) {
     // 存储已有的医院的数组
     hasHospitalArr.value = result.data.content;
@@ -81,6 +91,21 @@ const currentChange = async () => {
 };
 // 分页器下拉菜单变化时的回调
 const sizeChange = async () => {
+  getHospitalInfo();
+};
+
+// 子组件自定义事件：获取子组件传递过来的参数
+const getLevel = (level:string) =>{
+  // 收集等级参数
+  hostype.value = level;
+  // 再次发请求
+  getHospitalInfo();
+  // console.log(level)
+}
+const getRegion = (region:string) => {
+  // 收集地区参数
+  districtCode.value = region;
+  // 再次发送请求
   getHospitalInfo();
 }
 </script>
