@@ -11,22 +11,22 @@ export interface Hospital {
     "createTime": string,
     "updateTime": string,
     "isDeleted": number,
-    "param":{
-        "hostypeString":string,
-        "fullAddress":string
+    "param": {
+        "hostypeString": string,
+        "fullAddress": string
     },
-    "hoscode":string,
-    "hosname":string,
-    'hostype':string,
-    "provinceCode":string,
-    "cityCode":string,
-    "districtCode":string,
-    "address":"",
-    "logoData":string,
-    "intro":string,
-    "route":string,
-    "status":number,
-    "bookingRule":{
+    "hoscode": string,
+    "hosname": string,
+    'hostype': string,
+    "provinceCode": string,
+    "cityCode": string,
+    "districtCode": string,
+    "address": "",
+    "logoData": string,
+    "intro": string,
+    "route": string,
+    "status": number,
+    "bookingRule": {
         "cycle": number,
         "releaseTime": string,
         "stopTime": string,
@@ -40,39 +40,39 @@ export interface Hospital {
 export type Content = Hospital[]
 
 // 获取已有医院接口返回数据的ts类型
-export interface HospitalResponseData extends ResponseData{
-    data:{
+export interface HospitalResponseData extends ResponseData {
+    data: {
         content: Content,
         "pageable": {
             "sort": {
-              "sorted": boolean,
-              "unsorted": boolean,
-              "empty": boolean
+                "sorted": boolean,
+                "unsorted": boolean,
+                "empty": boolean
             },
             "pageNumber": number,
             "pageSize": number,
             "offset": number,
             "paged": boolean,
             "unpaged": boolean
-          },
-          "totalPages": number,
-          "totalElements": number,
-          "last": boolean,
-          "first": boolean,
-          "sort": {
+        },
+        "totalPages": number,
+        "totalElements": number,
+        "last": boolean,
+        "first": boolean,
+        "sort": {
             "sorted": boolean,
             "unsorted": boolean,
             "empty": boolean
-          },
-          "numberOfElements": number,
-          "size": number,
-          "number": number,
-          "empty": boolean
+        },
+        "numberOfElements": number,
+        "size": number,
+        "number": number,
+        "empty": boolean
     }
 }
 
 // 代表医院等级或者地区的数据的ts类型
-export interface HospitalLevelAndRegion{
+export interface HospitalLevelAndRegion {
     "id": number,
     "createTime": string,
     "updateTime": string,
@@ -87,6 +87,10 @@ export interface HospitalLevelAndRegion{
 
 export type HospitalLevelAndRegionArr = HospitalLevelAndRegion[];
 // 获取等级或者医院地区接口返回的数据类型
-export interface HospitalLevelAndRegionResponseData extends ResponseData{
-    data:HospitalLevelAndRegionArr;
+export interface HospitalLevelAndRegionResponseData extends ResponseData {
+    data: HospitalLevelAndRegionArr;
+}
+
+export interface HospitalInfo extends ResponseData {
+    data: Content
 }
