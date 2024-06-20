@@ -32,7 +32,9 @@
             @size-change="sizeChange"
           />
       </el-col>
-      <el-col :span="4">456</el-col>
+      <el-col :span="4">
+        <Tip/>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -49,6 +51,7 @@ import Search from "./search/index.vue";
 import Level from "./level/index.vue";
 import Region from "./region/index.vue";
 import Card from "./card/index.vue";
+import Tip from './tip/index.vue'
 import type { Content, HospitalResponseData } from "@/api/home/type";
 // 分页器默认的页码
 let pageNo = ref<number>(1);
