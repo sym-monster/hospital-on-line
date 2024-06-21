@@ -30,13 +30,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 // 接收父组件传递过来的props：已有医院的数据
-defineProps(['hospitalInfo'])
+let props = defineProps(['hospitalInfo'])
 
 // 获取路由对象
 let $router = useRouter();
 // 点击医院卡片跳转到医院详情
 const goDetail = ()=>{
-  $router.push({path:'/hospital'})
+  $router.push({path:'/hospital/register',query:{hoscode:props.hospitalInfo.hoscode}})
 }
 </script>
 

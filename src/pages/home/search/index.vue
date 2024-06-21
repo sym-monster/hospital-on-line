@@ -44,7 +44,7 @@ const fetchData = async(keyword:string,cb:any) => {
 // 点击某一个推荐项
 const goDetail = (item:any)=>{
   // 点击推荐项进入医院详情页
-  $router.push({path:'/hospital'})
+  $router.push({path:'/hospital/register',query:{hoscode:item.hoscode}})
 }
 </script>
 
