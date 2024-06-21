@@ -52,6 +52,7 @@ import { useRouter, useRoute } from 'vue-router';
 let $router = useRouter();
 // 获取当前路由的信息
 let $route = useRoute();
+// console.log($route.query.hoscode)
 // 左侧菜单点击事件的回调
 const changeActive = (path:string) => {
   // 跳转到对应的二级路由
@@ -67,10 +68,14 @@ onMounted(()=>{
 
 <style scoped lang="scss">
 .hospital{
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     .menu{
         flex:2;
+        .el-menu{
+          border: none;
+        }
     }
     .content{
         flex: 8;
