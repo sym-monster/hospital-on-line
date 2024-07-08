@@ -56,7 +56,7 @@ let $route = useRoute();
 // 左侧菜单点击事件的回调
 const changeActive = (path:string) => {
   // 跳转到对应的二级路由
-  $router.push(path)
+  $router.push({path,query:{hoscode:$route.query.hoscode}})
 }
 // 获取仓库对象
 let detailStore = useDetailStore();
